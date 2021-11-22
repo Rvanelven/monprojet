@@ -1,3 +1,8 @@
+import nltk
+
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 from nltk.stem import WordNetLemmatizer
 import string
 from nltk.corpus import stopwords
@@ -38,6 +43,6 @@ def clean_text(df_col, langage):
     df_col = df_col.apply(remove_punct)
     df_col = df_col.apply(lower_text)
     df_col = df_col.apply(remove_numbers)
-    df_col = df_col.apply(remove_stopwords(langage))
+    df_col = df_col.apply(lambda x: remove_stopwords(x, langage))
     df_col = df_col.apply(lemmat)
     return df_col
